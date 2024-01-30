@@ -16,6 +16,7 @@ done
 
 AUTH=$(echo -n "${USERNAME}:${PASSWORD}" | base64 -w 0)
 
+mkdir -p ~/.gem/
 cat > ~/.gem/nexus << EOF
 ---
 :url: $REPO_URL
