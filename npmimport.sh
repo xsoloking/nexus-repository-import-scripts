@@ -1,11 +1,26 @@
 #!/bin/bash
 
+# copy and run this script to the root of the repository directory containing files
+# this script attempts to exclude uploading itself explicitly so the script name is important
 # Get command line params
-while getopts ":r:k:" opt; do
+while getopts ":r:u:p:" opt; do
 	case $opt in
 		r) REPO_URL="$OPTARG"
 		;;
+		u) USERNAME="$OPTARG"
+		;;
+		p) PASSWORD="$OPTARG"
+		;;
 	esac
 done
+
+AUTH=$(echo -n "${USERNAME}:${PASSWORD}" | base64 -w 0)
+
+cat > ~/.npmrc << EOF
+registry=$REPO_URL
+_auth=$AUTH
+email=youremail@email.com
+always-auth=true
+EOF
 
 find . -type f -not -path '*/\.*' -name '*.tgz' -exec npm publish {} --registry $REPO_URL \;
