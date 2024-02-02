@@ -18,7 +18,7 @@ done
 cat > ~/.pypirc << EOF
 [distutils]
 index-servers =
-pypi
+  pypi
 [pypi]
 repository: $REPO_URL
 username: ${USERNAME}
