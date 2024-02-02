@@ -25,4 +25,4 @@ username: ${USERNAME}
 password: ${PASSWORD}
 EOF
 
-find . -type f -not -path '*/\.*' \(-name '*.tar.gz' -name '*.tgz' -name '*.whl'\) -exec twine upload -r pypi {} \;
+find . -type f -not -path '*/\.*' -name '*.tar.gz' -o -name '*.whl' -o -name '*.tgz' -exec twine upload -r pypi {} \;
