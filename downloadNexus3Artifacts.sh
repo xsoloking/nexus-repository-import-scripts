@@ -20,7 +20,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 FULL_URL="${NEXUS_ADDRESS}/service/rest/repository/browse/${REPO}"
-mkdir -p $REPO; cd $REPO
+mkdir -p repo/$REPO; cd repo/$REPO
 # Mirroring the dirs structure into the current location
 lftp $FULL_URL -e 'mirror .; exit'
 
